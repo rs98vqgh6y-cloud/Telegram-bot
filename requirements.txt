@@ -1,1 +1,1 @@
-pytetelegrambotapi==4.16.1
+pyTeLegramBotAPI
