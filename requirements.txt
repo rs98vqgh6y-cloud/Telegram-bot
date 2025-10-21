@@ -1,1 +1,1 @@
-pyTeLegramBotAPI
+pyton-telegram-bot==20.8
