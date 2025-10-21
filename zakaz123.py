@@ -2,7 +2,7 @@
 import random
 import string
 import re
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import types
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, MessageHandler, filters, ContextTypes
 
 # Настройка логирования
@@ -279,4 +279,5 @@ def main():
     application.run_polling()
 
 if __name__ == '__main__':
+
     main()
