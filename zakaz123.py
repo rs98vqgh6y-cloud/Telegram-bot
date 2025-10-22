@@ -299,7 +299,7 @@ def run_flask():
 threading.Thread(target=run_flask).start()
 
 # Запускаем Telegram-бота
-application.run_polling(# --- Добавляем мини-сервер Flask, чтобы Render не выключал приложение ---
+application.run_polling(# --- Добавляем мини-сервер Flask, чтобы Render не выключал приложение ---)
 # --- Добавляем мини-сервер Flask, чтобы Render не выключал приложение ---
 from flask import Flask
 import threading
@@ -319,6 +319,7 @@ if __name__ == "__main__":
     threading.Thread(target=run_flask).start()
     print("🤖 Бот запущен! Ожидаем события...")
     application.run_polling()
+
 
 
 
