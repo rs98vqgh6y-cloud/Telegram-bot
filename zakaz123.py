@@ -300,12 +300,6 @@ threading.Thread(target=run_flask).start()
 
 # Запускаем Telegram-бота
 application.run_polling(# --- Добавляем мини-сервер Flask, чтобы Render не выключал приложение ---
-ке, чтобы Render видел открытый порт"""
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
-
-if __name__ == "__main__":
-    # Запускаем Flask-сервер в отдельном потоке
-    threading.Thread(target=run_flask).start()
 # --- Добавляем мини-сервер Flask, чтобы Render не выключал приложение ---
 from flask import Flask
 import threading
@@ -318,12 +312,11 @@ def home():
     return "✅ Bot is running on Render!", 200
 
 def run_flask():
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
 
 if __name__ == "__main__":
-    # Запускаем Flask в отдельном потоке
     threading.Thread(target=run_flask).start()
-
     print("🤖 Бот запущен! Ожидаем события...")
     application.run_polling()
 
