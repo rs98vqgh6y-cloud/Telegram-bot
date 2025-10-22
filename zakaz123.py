@@ -2,8 +2,12 @@
 import random
 import string
 import re
-from telegram import Update
-from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
+from telegram.ext import (
+    ApplicationBuilder,
+    CommandHandler,
+    ContextTypes,
+    CallbackQueryHandler,
+)
 
 # Настройка логирования
 logging.basicConfig(
@@ -281,4 +285,5 @@ def main():
 if __name__ == '__main__':
 
     main()
+
 
