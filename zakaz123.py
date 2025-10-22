@@ -299,7 +299,39 @@ def run_flask():
 threading.Thread(target=run_flask).start()
 
 # Запускаем Telegram-бота
-application.run_polling()
+application.run_polling(# --- Добавляем мини-сервер Flask, чтобы Render не выключал приложение ---
+from flask import Flask
+import threading
+import os
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "✅ Bot is running on Render!", 200
+
+def run_flask():
+    """Запускаем Flask в отдельном потоке, чтобы Render видел открытый порт"""
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+
+if __name__ == "__main__":
+    # Запускаем Flask-сервер в отдельном потоке
+    threading.Thread(target=run_flask).start()
+
+    # Запуск Telegram-бота (polling)
+    from telegram.ext import ApplicationBuilder
+    TOKEN = os.getenv("8222231241:AAFf0qh0CJ41vV463tgwT2sticwx9a9eyxc")  # Укажи токен в переменных Render
+    application = ApplicationBuilder().token(TOKEN).build()
+
+    # Здесь должны быть твои handlers, например:
+    # application.add_handler(CommandHandler("start", start))
+    # application.add_handler(MessageHandler(filters.TEXT, handle_message))
+    # application.add_handler(CallbackQueryHandler(button))
+
+    print("🤖 Бот запущен! Ожидаем события...")
+    application.run_polling()
+
+
 
 
 
