@@ -3,7 +3,8 @@ import random
 import string
 import re
 from telegram import Update
-from telegram.ext import (ApplicationBuilder, CommandHandler, ContextTypes, CallbackQueryHandler, MessageHandler, filters, ImlineKeyboardButton, InlineKeyboardMarkup)
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.ext import (ApplicationBuilder, CommandHandler, ContextTypes, CallbackQueryHandler, MessageHandler, filters, )
 
 
 # Настройка логирования
@@ -282,6 +283,25 @@ def main():
 if __name__ == '__main__':
 
     main()
+    from flask import Flask
+import threading, os
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Bot is running!", 200
+
+def run_flask():
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+
+# Запускаем Flask в отдельном потоке
+threading.Thread(target=run_flask).start()
+
+# Запускаем Telegram-бота
+application.run_polling()
+
+
 
 
 
