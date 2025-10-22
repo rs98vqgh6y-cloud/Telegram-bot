@@ -3,7 +3,7 @@ import random
 import string
 import re
 from telegram import Update
-from telegram.ext import (ApplicationBuilder, CommandHandler, ContextTypes, CallbackQueryHandler)
+from telegram.ext import (ApplicationBuilder, CommandHandler, ContextTypes, CallbackQueryHandler, MessageHandler, filters)
 
 
 # Настройка логирования
@@ -282,6 +282,7 @@ def main():
 if __name__ == '__main__':
 
     main()
+
 
 
 
