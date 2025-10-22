@@ -321,6 +321,28 @@ application.run_polling()
 
 
 # Запускаем Telegram-бота
+# --- Мини-сервер Flask для Render ---
+from flask import Flask
+import threading
+import os
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "✅ Telegram Bot is running!", 200
+
+def run_flask():
+    port = int(os.environ.get("PORT", 10000))  # Render автоматически задает PORT
+    app.run(host="0.0.0.0", port=port)
+
+# Запускаем Flask в отдельном потоке, чтобы не мешал боту
+threading.Thread(target=run_flask).start()
+
+# Теперь запускаем Telegram-бота
+print("🤖 Бот запущен! Ожидаем события...")
+application.run_polling()
+
 application.run_polling
 # --- Добавляем мини-сервер Flask, чтобы Render не выключал приложение ---
 from flask import Flask
@@ -341,6 +363,7 @@ if __name__ == "__main__":
     threading.Thread(target=run_flask).start()
     print("🤖 Бот запущен! Ожидаем события...")
     application.run_polling()
+
 
 
 
