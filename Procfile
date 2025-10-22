@@ -1,1 +1,1 @@
-worker: python zakaz123.py
+web: python zakaz123.py
